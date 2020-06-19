@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue.js</title>
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+        <h1>Hello Vue.js</h1>
+        <div id="app">
+            【input text】 {{ message }}
+            <br>
+            【input upper text】 {{ message.toUpperCase() }}
+        </div>
+        <hr>
+        <input type="text" onInput="doAction(event);">
+
+        <!-- Vue script -->
+        <script>
+            var data = {
+                message: 'please type!'
+            };
+
+            var app = new Vue({
+                el: '#app',
+                data: data
+            })
+
+            function doAction(event) {
+                data.message = event.target.value;
+            }
+        </script>
+    </body>
+</html>
