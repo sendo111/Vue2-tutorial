@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue.js</title>
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+        <h1>Hello Vue.js</h1>
+        <div id="app">
+            {{ message }}
+        </div>
+        <hr>
+        <button onclick="doAction();">
+            click
+        </button>
+
+        <!-- Vue script -->
+        <script>
+            var data = {
+                message: 'Hello Vue!',
+                items: ['One' ,'Two', 'Three', 'Four', 'Five'],
+            };
+
+            var app = new Vue({
+                el: '#app',
+                data: data,
+                // 書き方①
+                // render: (element) => {
+                //     var p = element(
+                //         'p',
+                //         {style: 'font-size: 20pt;'},
+                //         data.message,
+                //     );
+                //     var li = data.items.map(item => element('li', item));
+                //     var ol = element('ol', li);
+                //     var div = element('div', [p, ol]);
+                //
+                //     return div;
+                // }
+
+                // 書き方②
+                render: (h) => {
+                    return h('div', [
+                        h(
+                            'p',
+                            {style: 'font-size: 20pt;'},
+                            data.message,
+                        ),
+                        h('ol',
+                            data.items.map(item => h('li', item)),
+                        )
+                    ]);
+                }
+            })
+
+            function doAction() {
+                var newdata = [
+                    'eins', 'zwei', 'drei', 'vier', 'fuenf'
+                ];
+                data.message = 'You Clicked!!';
+                data.items[0] = 'null';
+                for (n in data.items) {
+                    data.items[n] = newdata[n];
+                }
+            }
+        </script>
+    </body>
+</html>
