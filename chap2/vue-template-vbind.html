@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue.js</title>
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+        <h1>Hello Vue.js</h1>
+        <div id="app">
+            <p v-bind:style="style">{{ message }}</p>
+        </div>
+        <hr>
+        <input type="number" onchange="doChange(event);" value="20">
+
+        <!-- Vue script -->
+        <script>
+            var data = {
+                message: 'Hello Vue!!',
+                style: 'font-size:20pt; color:red;',
+            };
+
+            var app = new Vue({
+                el: '#app',
+                data: data
+            });
+
+            function doChange(event) {
+                data.style = 'font-size:' + event.target.value + 'pt; color:red;'
+            }
+        </script>
+    </body>
+</html>
